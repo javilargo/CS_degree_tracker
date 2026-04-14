@@ -6,99 +6,11 @@ import csv
 input_file = 'plan_estudios.csv'
 
 my_dict = {}
-transformed_data = []
-my_array = []
-multi_req_rows = []
-multi_req = 0
+
 #titles_file = 'titles.txt'
 #authors_file = 'authors.txt'
 
-def read_csv():
-    with open(input_file, newline='') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
-        total_courses = 0
-        new_rows = []
-        for row in spamreader:
-            total_courses += 1
-            if row[-1] != "Aprobado":
-                print(row)
-                new_rows.append(row)
-        print("\nTHIS ARE THE NOT APPROVED COURSES\n")
-        count = 0
-        for row in new_rows:
-            count+=1
-            print(row)
-            my_array.append(row)
-        print(f"From the total of {total_courses-1} courses")
-        print(f"There are {count-1} courses remaining")
-        
-        multi_req = 0
-        multi_req_rows = []
-        for row in new_rows:
-            if row[0] == "2do Cuatrimestre":
-                row[0] = 2
-            if row[0] == "3er Cuatrimestre":
-                row[0] = 3
-            if row[0] == "4to Cuatrimestre":
-                row[0] = 4
-            if row[0] == "5to Cuatrimestre":
-                row[0] = 5
-            if row[0] == "6to Cuatrimestre":
-                row[0] = 6
-            if row[0] == "7mo Cuatrimestre":
-                row[0] = 7
-            if row[0] == "8vo Cuatrimestre":
-                row[0] = 8                     
-            print(row)
-            if len(row) > 5:
-                multi_req += 1
-                multi_req_rows.append(row)
-        print(f"From the total of {total_courses-1} courses")
-        print(f"There are {count-1} courses remaining")
-        print(f"There are {multi_req} courses with more than 1 requirement")
-        print(f"These are the courses with more than 1 req {multi_req_rows}")
-        
-        print(f"\nLAS MATERIAS QUE FALTAN SON:") 
-        for row in new_rows:
-            if row[-1] == "Por matricular":
-                print(f"Del cuatri {row[0]} falta {row[2]}")   
-
-        print(f"\nPOR EL LADO BUENO LLEVO ESTAS:")
-        for row in new_rows:
-            if row[-1] == "Matriculado":
-                print(row)
-                print(f"Del cuatri {row[0]} llevas {row[2]}")
-                
-        print(f"\nLAS QUE TIENEN MAS DE UN REQUISITO SON:")
-        for row in multi_req_rows:
-            print(f"{row}")
-            
-        print(f"\nO BIEN, LAS QUE TIENEN MAS DE UN REQUISITO SON:")
-        for row in multi_req_rows:
-            if len(row) == 6:
-                reqs_dict = {"requisitos": [row[3], row[4]]}
-                row[3] = reqs_dict
-                row.pop(4)
-            if len(row) == 7:
-                reqs_dict = {"requisitos": [row[3], row[4], row[5]]}
-                row[3] = reqs_dict
-                row.pop(4)
-                row.pop(4)
-                
-        for row in multi_req_rows:
-            print(f"{row}")        
-#         Filter out empty lines to get a clean list of [Title, Author, Title, Author...]
-#         lines = [line.strip() for line in f if line.strip()]
-
-#    with open(titles_file, 'w', encoding='utf-8') as t_file, \
-#         #open(authors_file, 'w', encoding='utf-8') as a_file:
-
-#        for i in range(0, len(lines), 2):
-#            t_file.write(lines[i] + '\n')
-#            if (i + 1) < len(lines):
-#                a_file.write(lines[i+1] + '\n')
-
-    #print(f"Split complete: '{titles_file}' and '{authors_file}' created.")
+#crea el diccionario
 def get_dict():
     with open(input_file, newline='') as csvfile:
         reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
@@ -107,7 +19,8 @@ def get_dict():
             my_dict[id] = row
             id += 1
     print("Your dictionary is ready as: my_dict")
-    
+
+#convierte las materias en ints    
 def cuatri_to_int():
     for id in my_dict:
         if my_dict[id]['Nivel'] == '1er Cuatrimestre':
@@ -127,84 +40,11 @@ def cuatri_to_int():
         if my_dict[id]['Nivel'] == '8vo Cuatrimestre':
             my_dict[id]['Nivel'] = 8
         
-    for key, value in my_dict.items():
-        print(f"{key} {value}")
-        
-def get_req():
-    print("\nGetting requirements\n")
-    for id in my_dict:
-        print(f"Para el curso: {my_dict[id]['Codigo']} {my_dict[id]['Curso']} Necesitas: {my_dict[id]['Requisitos']}")
-        
-        
-def get_approved():
-    print("\nAPPROVED COURSES ARE\n")      
-    for id in my_dict:
-        if my_dict[id]['Estado'] == 'Aprobado':
-            print(my_dict[id])   
+    #for key, value in my_dict.items():
+    #    print(f"{key} {value}")
 
-def get_enrolled():
-    print("\nENROLLED COURSES ARE\n")      
-    for id in my_dict:
-        if my_dict[id]['Estado'] == 'Matriculado':
-            print(my_dict[id])   
-            
-def get_pending():
-    print("\nPENDING COURSES ARE\n")      
-    for id in my_dict:
-        if my_dict[id]['Estado'] == 'Por matricular':
-            print(my_dict[id])               
 
-def transform_data():
-    global total_courses
-    global multi_req
-    global multi_req_rows 
-    with open(input_file, newline='') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=',', quotechar='"')
-
-        #total_courses = len(spamreader) - 1
-        for row in spamreader:
-            if row[0] == "1er Cuatrimestre":
-                row[0] = 1
-            if row[0] == "2do Cuatrimestre":
-                row[0] = 2
-            if row[0] == "3er Cuatrimestre":
-                row[0] = 3
-            if row[0] == "4to Cuatrimestre":
-                row[0] = 4
-            if row[0] == "5to Cuatrimestre":
-                row[0] = 5
-            if row[0] == "6to Cuatrimestre":
-                row[0] = 6
-            if row[0] == "7mo Cuatrimestre":
-                row[0] = 7
-            if row[0] == "8vo Cuatrimestre":
-                row[0] = 8                     
-            transformed_data.append(row)
-            
-    print("Success! Data has been transformed")
-    print("This is the new data")
-    for row in transformed_data:
-        print(row)
-
-def get_aprobados():
-    global total_courses
-    with open(input_file, newline='') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')       
-        new_rows = []
-        for row in spamreader:
-            total_courses += 1
-            if row[-1] == "Aprobado":
-                print(row)
-                new_rows.append(row)
-        print("\nTHIS ARE THE APPROVED COURSES (W)\n")
-        count = 0
-        for row in new_rows:
-            count+=1
-            print(row)
-            my_array.append(row)
-        print(f"From the total of {total_courses-1} courses")
-        print(f"There are {count} courses completed")
-        
+#Convierte los requisitos en listas
 def split_req():
     for id in my_dict:
         text = my_dict[id]['Requisitos']
@@ -212,21 +52,168 @@ def split_req():
         
 def get_total():
     print(f"\nLa cantidad de cursos totales es {len(my_dict)}\n")
+        
+def prepare_data():
+    get_dict()
+    cuatri_to_int()
+    split_req()
+        
+def dict_to_file():
+    prepare_data()
+    
+    with open("example_dict.txt", "w") as f:
+        for key, value in my_dict.items():
+            f.write(str(key))
+            f.write(": ")
+            f.write(str(value))
+            f.write("\n")
+
+
+#lista los requisitos        
+def get_all_reqs():
+    print("\nGetting requirements\n")
+    for id in my_dict:
+        print(f"Para el curso: {my_dict[id]['Codigo']} {my_dict[id]['Curso']} Necesitas: {my_dict[id]['Requisitos']}")
+        
+def get_reqs():
+    print("\nGetting requirements for pending courses")
+    unblocks = []
+    for id in my_dict:
+        if not 'Ninguno' in my_dict[id]['Requisitos'] and my_dict[id]['Estado'] != 'Aprobado' and my_dict[id]['Estado'] != 'Matriculado':
+            print(f"\nPara el curso: {my_dict[id]['Codigo']} {my_dict[id]['Curso']} Necesitas: {my_dict[id]['Requisitos']}")
+            for requirement in my_dict[id]['Requisitos']:
+                for items in my_dict:
+                    if requirement in my_dict[items]['Codigo'] and my_dict[items]['Estado'] == 'Aprobado':
+                        print(f"Tienes el requisito: {requirement} aprobado")
+                    if requirement in my_dict[items]['Codigo'] and my_dict[items]['Estado'] == 'Matriculado':
+                        print(f"Tienes el requisito: {requirement}: {my_dict[items]['Curso']} Matriculado!")
+                        unblocks.append(my_dict[id])
+                    if requirement in my_dict[items]['Codigo'] and my_dict[items]['Estado'] == 'Por matricular':
+                        print(f"Falta el requisito: {requirement} : {my_dict[items]['Curso']}")
+
+    print("\nTus cursos matriculados te desbloquean 1 en las siguientes materias:\n")
+    for thing in unblocks:
+        print(f"{thing}")
+    
+        
+#lista las materias aprobadas        
+def get_approved():
+    print("\nAPPROVED COURSES ARE\n")
+    count = 0      
+    for id in my_dict:
+        if my_dict[id]['Estado'] == 'Aprobado':
+            print(my_dict[id])
+            count += 1
+    get_approved_count()     
+
+#lista las materias matriculadas
+def get_enrolled():
+    print("\nENROLLED COURSES ARE\n")
+    count = 0      
+    for id in my_dict:
+        if my_dict[id]['Estado'] == 'Matriculado':
+            print(my_dict[id])
+    get_enrolled_count()  
+
+#lista las materias pendientes            
+def get_pending():
+    print("\nPENDING COURSES ARE\n")   
+    for id in my_dict:
+        if my_dict[id]['Estado'] == 'Por matricular':
+            print(my_dict[id])  
+    get_pending_count()             
+
+def get_approved_count():
+    count = 0      
+    for id in my_dict:
+        if my_dict[id]['Estado'] == 'Aprobado':
+            count +=1
+    print(f"Has completado {count} cursos")  
+    
+def get_enrolled_count():
+    count = 0      
+    for id in my_dict:
+        if my_dict[id]['Estado'] == 'Matriculado':
+            count +=1
+    print(f"Solo faltan {count} cursos por completar")  
+    
+def get_pending_count():
+    count = 0      
+    for id in my_dict:
+        if my_dict[id]['Estado'] == 'Por matricular':
+            count +=1
+    print(f"Solo faltan {count} cursos por completar")      
+                   
+def get_all():
+    for item, value in my_dict.items():
+        print(value['Curso'])
+        #print(f"{item}: {value}")
+        
+def get_by_level(cuatri):
+    print(f"Las materias del cuatri {cuatri} son:")
+    for id in my_dict:
+        if my_dict[id]['Nivel'] == cuatri:
+            print(f"{my_dict[id]['Curso']} {my_dict[id]['Estado']}")
+
+def main_menu():
+    while True:
+        print("\n--- APP MAIN MENU ---")
+        print("1. Print all")
+        print("2. Get by cuatri")
+        print("3. Help")
+        print("0. Exit")
+
+        choice = input("\nSelect an option (1-4): ")       
+        if choice == '1':
+            print("Displaying all assignatures...")
+            get_all()
+        elif choice == '2':
+            print("Opening settings...")
+            level_menu()
+        elif choice == '3':
+            print("Loading help documentation...")
+            get_enrolled()
+        elif choice == '0':
+            print("Exiting... Goodbye!")
+            break  # This stops the while loop
+        else:
+            print("Invalid choice. Please try again.")
+
+def level_menu():
+    while True:
+        print("\n--- APP SECONDARY MENU ---")
+        print("1. Print all")
+        print("2. Settings")
+        print("3. Help")
+        print("0. Exit")
+
+        choice = input("\nSelect an option (1-4): ")       
+        if choice == '1':
+            print("Displaying profile information...")
+            get_by_level(1)
+            break;
+        elif choice == '2':
+            print("Opening settings...")
+            get_by_level(2)
+            break;
+        elif choice == '3':
+            print("Loading help documentation...")
+            get_by_level(3)
+            break;
+        elif choice == '0':
+            print("Exiting... Goodbye!")
+            break  # This stops the while loop
+        else:
+            print("Invalid choice. Please try again.")
 
 def main():
     print("Hello from project-one!")
-    get_dict()
-    get_req()
-    cuatri_to_int()
-    get_approved()
-    get_enrolled()
-    get_pending()
-    get_total()
-    split_req()
-    #transform_data()
-    #get_total()
-    #read_csv()
-    #get_aprobados()
+    print("Assignature tracker")
+    prepare_data()
+    print("Opening menu...")
+    main_menu()
+
+
 #    root = tk.Tk()
 #    root.title("WSL Tkinter Test")
 #    string = ',\n'.join(str(x) for x in my_array)

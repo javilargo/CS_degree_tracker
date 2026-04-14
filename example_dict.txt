@@ -1,0 +1,38 @@
+1: {'Nivel': 1, 'Codigo': 'II-115', 'Curso': 'Introduccion Al Calculo', 'Requisitos': ['Ninguno'], 'Estado': 'Aprobado'}
+2: {'Nivel': 1, 'Codigo': 'SC-103', 'Curso': 'Introduccion a la Informatica', 'Requisitos': ['Ninguno'], 'Estado': 'Aprobado'}
+3: {'Nivel': 1, 'Codigo': 'SC-115', 'Curso': 'Programacion Basica (Introduccion a la programacion)', 'Requisitos': ['Ninguno'], 'Estado': 'Aprobado'}
+4: {'Nivel': 1, 'Codigo': 'SC-315', 'Curso': 'Matematicas Discretas', 'Requisitos': ['Ninguno'], 'Estado': 'Aprobado'}
+5: {'Nivel': 2, 'Codigo': 'II-215N', 'Curso': 'Calculo Diferencial e Integral I', 'Requisitos': ['II-115'], 'Estado': 'Por matricular'}
+6: {'Nivel': 2, 'Codigo': 'SC-202', 'Curso': 'Introduccion a la Programacion', 'Requisitos': ['SC-115'], 'Estado': 'Aprobado'}
+7: {'Nivel': 2, 'Codigo': 'SC-203', 'Curso': 'Fundamentos de Sistemas Operativos', 'Requisitos': ['SC-103'], 'Estado': 'Aprobado'}
+8: {'Nivel': 2, 'Codigo': 'SC-204', 'Curso': 'Principios de Redes y Comunicaciones', 'Requisitos': ['SC-103'], 'Estado': 'Aprobado'}
+9: {'Nivel': 2, 'Codigo': 'SC-205', 'Curso': 'Electronica Digital y Microprocesadores', 'Requisitos': ['SC-115', 'SC-315'], 'Estado': 'Aprobado'}
+10: {'Nivel': 3, 'Codigo': 'EM-220', 'Curso': 'Algebra Lineal', 'Requisitos': ['II-115'], 'Estado': 'Por matricular'}
+11: {'Nivel': 3, 'Codigo': 'SC-302', 'Curso': 'Documentacion del Software', 'Requisitos': ['SC-202'], 'Estado': 'Aprobado'}
+12: {'Nivel': 3, 'Codigo': 'SC-303', 'Curso': 'Programacion Cliente/Servidor Concurrente', 'Requisitos': ['SC-202'], 'Estado': 'Aprobado'}
+13: {'Nivel': 3, 'Codigo': 'SC-304', 'Curso': 'Estructura de Datos', 'Requisitos': ['SC-202'], 'Estado': 'Aprobado'}
+14: {'Nivel': 3, 'Codigo': 'SC-305', 'Curso': 'Diseno de Interfaz Grafica de Usuario', 'Requisitos': ['SC-202'], 'Estado': 'Aprobado'}
+15: {'Nivel': 4, 'Codigo': 'IC-100', 'Curso': 'Metodologia de Desarrollo de Proyectos', 'Requisitos': ['Ninguno'], 'Estado': 'Aprobado'}
+16: {'Nivel': 4, 'Codigo': 'SC-402', 'Curso': 'Fundamentos de Enrutamiento y Conmutacion', 'Requisitos': ['SC-204'], 'Estado': 'Matriculado'}
+17: {'Nivel': 4, 'Codigo': 'SC-403', 'Curso': 'Desarrollo de Aplicaciones Web y Patrones', 'Requisitos': ['SC-303'], 'Estado': 'Matriculado'}
+18: {'Nivel': 4, 'Codigo': 'SC-404', 'Curso': 'Fundamentos de Diseno de Base de Datos', 'Requisitos': ['SC-304'], 'Estado': 'Matriculado'}
+19: {'Nivel': 4, 'Codigo': 'SC-405', 'Curso': 'Calidad del Software', 'Requisitos': ['SC-302'], 'Estado': 'Aprobado'}
+20: {'Nivel': 5, 'Codigo': 'II-240', 'Curso': 'Probabilidad y Estadistica Descriptiva', 'Requisitos': ['II-115'], 'Estado': 'Por matricular'}
+21: {'Nivel': 5, 'Codigo': 'SC-502', 'Curso': 'Ambiente Web Cliente/Servidor', 'Requisitos': ['SC-305', 'SC-403'], 'Estado': 'Por matricular'}
+22: {'Nivel': 5, 'Codigo': 'SC-503', 'Curso': 'Administracion de Base de Datos', 'Requisitos': ['SC-404'], 'Estado': 'Por matricular'}
+23: {'Nivel': 5, 'Codigo': 'SC-504', 'Curso': 'Lenguajes de Base de Datos', 'Requisitos': ['SC-404'], 'Estado': 'Por matricular'}
+24: {'Nivel': 5, 'Codigo': 'SC-505', 'Curso': 'Administracion de Proyectos', 'Requisitos': ['AN-100', 'SC-405'], 'Estado': 'Aprobado'}
+25: {'Nivel': 6, 'Codigo': 'ELEC-01', 'Curso': 'Electiva 1', 'Requisitos': ['Ninguno'], 'Estado': 'Aprobado'}
+26: {'Nivel': 6, 'Codigo': 'SC-601', 'Curso': 'Programacion Avanzada', 'Requisitos': ['SC-403', 'SC-504'], 'Estado': 'Por matricular'}
+27: {'Nivel': 6, 'Codigo': 'SC-602', 'Curso': 'Data Warehouse y Base de Datos Multidimensionales', 'Requisitos': ['SC-404'], 'Estado': 'Por matricular'}
+28: {'Nivel': 6, 'Codigo': 'SC-603', 'Curso': 'Analisis y Modelado de Requerimientos', 'Requisitos': ['AN-100', 'SC-502', 'SC-601[CO]'], 'Estado': 'Por matricular'}
+29: {'Nivel': 6, 'Codigo': 'SC-604', 'Curso': 'Gobernanza y Gestion de Tecnologias de Informacion y Comunicaciones', 'Requisitos': ['AN-100', 'SC-505'], 'Estado': 'Por matricular'}
+30: {'Nivel': 7, 'Codigo': 'ELEC-02', 'Curso': 'Electiva 2', 'Requisitos': ['Ninguno'], 'Estado': 'Por matricular'}
+31: {'Nivel': 7, 'Codigo': 'SC-701', 'Curso': 'Programacion Avanzada en Web', 'Requisitos': ['SC-601'], 'Estado': 'Por matricular'}
+32: {'Nivel': 7, 'Codigo': 'SC-702', 'Curso': 'Diseno y Desarrollo de Sistemas', 'Requisitos': ['SC-601', 'SC-603'], 'Estado': 'Por matricular'}
+33: {'Nivel': 7, 'Codigo': 'SC-703', 'Curso': 'Programacion para Dispositivos Moviles', 'Requisitos': ['SC-303'], 'Estado': 'Por matricular'}
+34: {'Nivel': 7, 'Codigo': 'SC-704', 'Curso': 'Auditoria de Sistemas', 'Requisitos': ['SC-604'], 'Estado': 'Por matricular'}
+35: {'Nivel': 8, 'Codigo': 'ELEC-03', 'Curso': 'Electiva 3', 'Requisitos': ['Ninguno'], 'Estado': 'Aprobado'}
+36: {'Nivel': 8, 'Codigo': 'SC-250', 'Curso': 'Paradigmas de Programacion', 'Requisitos': ['SC-701'], 'Estado': 'Por matricular'}
+37: {'Nivel': 8, 'Codigo': 'SC-270', 'Curso': 'Computacion y Sociedad', 'Requisitos': ['SC-704'], 'Estado': 'Por matricular'}
+38: {'Nivel': 8, 'Codigo': 'SC-803', 'Curso': 'Implantacion de Sistemas', 'Requisitos': ['SC-702'], 'Estado': 'Por matricular'}
