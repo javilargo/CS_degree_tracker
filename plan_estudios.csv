@@ -1,0 +1,39 @@
+Nivel,Codigo,Curso,Requisitos,Estado
+1er Cuatrimestre,II-115,Introduccion Al Calculo,Ninguno,Aprobado
+1er Cuatrimestre,SC-103,Introduccion a la Informatica,Ninguno,Aprobado
+1er Cuatrimestre,SC-115,Programacion Basica (Introduccion a la programacion),Ninguno,Aprobado
+1er Cuatrimestre,SC-315,Matematicas Discretas,Ninguno,Aprobado
+2do Cuatrimestre,II-215N,Calculo Diferencial e Integral I,II-115,Por matricular
+2do Cuatrimestre,SC-202,Introduccion a la Programacion,SC-115,Aprobado
+2do Cuatrimestre,SC-203,Fundamentos de Sistemas Operativos,SC-103,Aprobado
+2do Cuatrimestre,SC-204,Principios de Redes y Comunicaciones,SC-103,Aprobado
+2do Cuatrimestre,SC-205,Electronica Digital y Microprocesadores,"SC-115, SC-315",Aprobado
+3er Cuatrimestre,EM-220,Algebra Lineal,II-115,Por matricular
+3er Cuatrimestre,SC-302,Documentacion del Software,SC-202,Aprobado
+3er Cuatrimestre,SC-303,Programacion Cliente/Servidor Concurrente,SC-202,Aprobado
+3er Cuatrimestre,SC-304,Estructura de Datos,SC-202,Aprobado
+3er Cuatrimestre,SC-305,Diseno de Interfaz Grafica de Usuario,SC-202,Aprobado
+4to Cuatrimestre,IC-100,Metodologia de Desarrollo de Proyectos,Ninguno,Aprobado
+4to Cuatrimestre,SC-402,Fundamentos de Enrutamiento y Conmutacion,SC-204,Matriculado
+4to Cuatrimestre,SC-403,Desarrollo de Aplicaciones Web y Patrones,SC-303,Matriculado
+4to Cuatrimestre,SC-404,Fundamentos de Diseno de Base de Datos,SC-304,Matriculado
+4to Cuatrimestre,SC-405,Calidad del Software,SC-302,Aprobado
+5to Cuatrimestre,II-240,Probabilidad y Estadistica Descriptiva,II-115,Por matricular
+5to Cuatrimestre,SC-502,Ambiente Web Cliente/Servidor,"SC-305, SC-403",Por matricular
+5to Cuatrimestre,SC-503,Administracion de Base de Datos,SC-404,Por matricular
+5to Cuatrimestre,SC-504,Lenguajes de Base de Datos,SC-404,Por matricular
+5to Cuatrimestre,SC-505,Administracion de Proyectos,"AN-100, SC-405",Aprobado
+6to Cuatrimestre,ELEC-01,Electiva 1,Ninguno,Aprobado
+6to Cuatrimestre,SC-601,Programacion Avanzada,"SC-403, SC-504",Por matricular
+6to Cuatrimestre,SC-602,Data Warehouse y Base de Datos Multidimensionales,SC-404,Por matricular
+6to Cuatrimestre,SC-603,Analisis y Modelado de Requerimientos,"AN-100, SC-502, SC-601[CO]",Por matricular
+6to Cuatrimestre,SC-604,Gobernanza y Gestion de Tecnologias de Informacion y Comunicaciones,"AN-100, SC-505",Por matricular
+7mo Cuatrimestre,ELEC-02,Electiva 2,Ninguno,Por matricular
+7mo Cuatrimestre,SC-701,Programacion Avanzada en Web,SC-601,Por matricular
+7mo Cuatrimestre,SC-702,Diseno y Desarrollo de Sistemas,"SC-601, SC-603",Por matricular
+7mo Cuatrimestre,SC-703,Programacion para Dispositivos Moviles,SC-303,Por matricular
+7mo Cuatrimestre,SC-704,Auditoria de Sistemas,SC-604,Por matricular
+8vo Cuatrimestre,ELEC-03,Electiva 3,Ninguno,Aprobado
+8vo Cuatrimestre,SC-250,Paradigmas de Programacion,SC-701,Por matricular
+8vo Cuatrimestre,SC-270,Computacion y Sociedad,SC-704,Por matricular
+8vo Cuatrimestre,SC-803,Implantacion de Sistemas,SC-702,Por matricular
