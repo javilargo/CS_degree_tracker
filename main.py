@@ -61,12 +61,15 @@ def prepare_data():
 def dict_to_file():
     prepare_data()
     
-    with open("example_dict.txt", "w") as f:
+    headers = ['id', 'Nivel', 'Codigo', 'Curso', 'Requisitos', 'Estado']  # Define headers
+
+    with open('example.csv', 'w', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=headers)
+        writer.writeheader()
         for key, value in my_dict.items():
-            f.write(str(key))
-            f.write(": ")
-            f.write(str(value))
-            f.write("\n")
+            row = {'id': key}
+            row.update(value)
+            writer.writerow(row)
 
 
 #lista los requisitos        
@@ -120,7 +123,7 @@ def get_pending():
     print("\nPENDING COURSES ARE\n")   
     for id in my_dict:
         if my_dict[id]['Estado'] == 'Por matricular':
-            print(my_dict[id])  
+            print(f"{my_dict[id]['Codigo']}: {my_dict[id]['Curso']}")  
     get_pending_count()             
 
 def get_approved_count():
@@ -146,14 +149,17 @@ def get_pending_count():
                    
 def get_all():
     for item, value in my_dict.items():
-        print(value['Curso'])
-        #print(f"{item}: {value}")
+        #print(value['Curso'])
+        print(f"{item}: {value}")
         
 def get_by_level(cuatri):
     print(f"Las materias del cuatri {cuatri} son:")
     for id in my_dict:
         if my_dict[id]['Nivel'] == cuatri:
             print(f"{my_dict[id]['Curso']} {my_dict[id]['Estado']}")
+            
+def get_by_id(value):
+    print(f"{my_dict[value]}")
 
 def main_menu():
     while True:
@@ -211,7 +217,11 @@ def main():
     print("Assignature tracker")
     prepare_data()
     print("Opening menu...")
-    main_menu()
+    #main_menu()
+    get_pending()
+    #get_by_id(38)
+    #get_by_level(8)
+    #dict_to_file()
 
 
 #    root = tk.Tk()
