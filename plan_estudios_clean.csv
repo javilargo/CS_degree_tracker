@@ -1,0 +1,39 @@
+id,Nivel,Codigo,Curso,Requisitos,Estado
+1,1,II-115,Introduccion Al Calculo,['Ninguno'],Aprobado
+2,1,SC-103,Introduccion a la Informatica,['Ninguno'],Aprobado
+3,1,SC-115,Programacion Basica (Introduccion a la programacion),['Ninguno'],Aprobado
+4,1,SC-315,Matematicas Discretas,['Ninguno'],Aprobado
+5,2,II-215N,Calculo Diferencial e Integral I,['II-115'],Por matricular
+6,2,SC-202,Introduccion a la Programacion,['SC-115'],Aprobado
+7,2,SC-203,Fundamentos de Sistemas Operativos,['SC-103'],Aprobado
+8,2,SC-204,Principios de Redes y Comunicaciones,['SC-103'],Aprobado
+9,2,SC-205,Electronica Digital y Microprocesadores,"['SC-115', 'SC-315']",Aprobado
+10,3,EM-220,Algebra Lineal,['II-115'],Por matricular
+11,3,SC-302,Documentacion del Software,['SC-202'],Aprobado
+12,3,SC-303,Programacion Cliente/Servidor Concurrente,['SC-202'],Aprobado
+13,3,SC-304,Estructura de Datos,['SC-202'],Aprobado
+14,3,SC-305,Diseno de Interfaz Grafica de Usuario,['SC-202'],Aprobado
+15,4,IC-100,Metodologia de Desarrollo de Proyectos,['Ninguno'],Aprobado
+16,4,SC-402,Fundamentos de Enrutamiento y Conmutacion,['SC-204'],Matriculado
+17,4,SC-403,Desarrollo de Aplicaciones Web y Patrones,['SC-303'],Matriculado
+18,4,SC-404,Fundamentos de Diseno de Base de Datos,['SC-304'],Matriculado
+19,4,SC-405,Calidad del Software,['SC-302'],Aprobado
+20,5,II-240,Probabilidad y Estadistica Descriptiva,['II-115'],Por matricular
+21,5,SC-502,Ambiente Web Cliente/Servidor,"['SC-305', 'SC-403']",Por matricular
+22,5,SC-503,Administracion de Base de Datos,['SC-404'],Por matricular
+23,5,SC-504,Lenguajes de Base de Datos,['SC-404'],Por matricular
+24,5,SC-505,Administracion de Proyectos,"['AN-100', 'SC-405']",Aprobado
+25,6,ELEC-01,Electiva 1,['Ninguno'],Aprobado
+26,6,SC-601,Programacion Avanzada,"['SC-403', 'SC-504']",Por matricular
+27,6,SC-602,Data Warehouse y Base de Datos Multidimensionales,['SC-404'],Por matricular
+28,6,SC-603,Analisis y Modelado de Requerimientos,"['AN-100', 'SC-502', 'SC-601[CO]']",Por matricular
+29,6,SC-604,Gobernanza y Gestion de Tecnologias de Informacion y Comunicaciones,"['AN-100', 'SC-505']",Por matricular
+30,7,ELEC-02,Electiva 2,['Ninguno'],Por matricular
+31,7,SC-701,Programacion Avanzada en Web,['SC-601'],Por matricular
+32,7,SC-702,Diseno y Desarrollo de Sistemas,"['SC-601', 'SC-603']",Por matricular
+33,7,SC-703,Programacion para Dispositivos Moviles,['SC-303'],Por matricular
+34,7,SC-704,Auditoria de Sistemas,['SC-604'],Por matricular
+35,8,ELEC-03,Electiva 3,['Ninguno'],Aprobado
+36,8,SC-250,Paradigmas de Programacion,['SC-701'],Por matricular
+37,8,SC-270,Computacion y Sociedad,['SC-704'],Por matricular
+38,8,SC-803,Implantacion de Sistemas,['SC-702'],Por matricular
