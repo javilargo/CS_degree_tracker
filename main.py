@@ -1,9 +1,15 @@
 import tkinter as tk
+import sqlite3
 import csv
+from course import Course
+from curriculum import CurriculumManager
+from courses import *
 
+conn = sqlite3.connect('my_database.db')
+cursor = conn.cursor()
+cursor.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT)")
+conn.commit()
 
-
-input_file = 'plan_estudios.csv'
 
 my_dict = {}
 
@@ -11,7 +17,8 @@ my_dict = {}
 #authors_file = 'authors.txt'
 
 #crea el diccionario
-def get_dict():
+def get_dict(input_file):
+    print("Creating dict...")
     with open(input_file, newline='') as csvfile:
         reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
         #id = 1
@@ -27,6 +34,7 @@ def get_dict():
 #convierte las materias en ints    
 
 def cuatri_to_int():
+    print("Converting Nivel to int...")
     for id in my_dict:
         my_dict[id]['Nivel'] = int(my_dict[id]['Nivel'][0])
         
@@ -36,9 +44,10 @@ def cuatri_to_int():
 
 #Convierte los requisitos en listas
 def split_req():
+    print("Creating requirements as lists...")
     for id in my_dict:
         text = my_dict[id]['Requisitos']
-        my_dict[id]['Requisitos'] = text.split(", ")
+        my_dict[id]['Requisitos'] = [item.strip() for item in text.split(",")]
         for index in range(len(my_dict[id]['Requisitos'])):
             #print(index)
             if my_dict[id]['Requisitos'][index] == 'AN-100':
@@ -53,45 +62,33 @@ def fill_unblocks():
     print("\nFilling Unlocks list...")
     for id in my_dict:
         if not 'Ninguno' in my_dict[id]['Requisitos']:
-            print(f"\nPara el curso: {id} {my_dict[id]['Curso']} Necesitas: {my_dict[id]['Requisitos']}")
-            for requirement in my_dict[id]['Requisitos']:
+            #print(f"\nPara el curso: {id} {my_dict[id]['Curso']} Necesitas: {my_dict[id]['Requisitos']}")
+            for requirement in my_dict[id]['Requisitos']:                
                 #ERROR PORQUE HAY UN REQ QUE DICE [CO] al final
                 #TODO add a try catch exception in case requirement does not exist
-                
-                requirement = requirement[:6]
-                
-                try: 
-                    if my_dict[requirement]['Estado'] == 'Aprobado':
-                        print(f"Tienes el requisito: {requirement} Aprobado!")
-                        my_dict[requirement]['Unlocks'].append(id)
-                    if my_dict[requirement]['Estado'] == 'Matriculado':
-                        print(f"Tienes el requisito: {requirement} Matriculado!")
-                        unblocks.append(id)
-                        my_dict[requirement]['Unlocks'].append(id)
-                    if my_dict[requirement]['Estado'] == 'Por matricular':
-                        print(f"Falta el requisito: {requirement}")
-                        my_dict[requirement]['Unlocks'].append(id)
-                except: 
-                    print(f"{requirement} does not exist. Please fix")                    
-
-    print("\nTus cursos matriculados te desbloquean 1 en las siguientes materias:\n")
-    for thing in unblocks:
-        print(f"{thing}")    
+                try:
+                    my_dict[requirement]['Unlocks'].append(id)
+                except:
+                    print(f"Error {requirement} does not exist")
+                    print("Retrying...")
+                    requirement = requirement[:6]
+                    my_dict[requirement]['Unlocks'].append(id)
+                    print(f"Success as {requirement}")
        
 def get_total():
     print(f"\nLa cantidad de cursos totales es {len(my_dict)}\n")
         
-def prepare_data():
-    print("Preparing data...")
-    print("Creating dict...")
-    get_dict()
-    print("Success!")
-    print("Converting Nivel to int...")
+def prepare_data(input_file):
+    print("\nPreparing data...\n")    
+    get_dict(input_file)
+    print("Success!\n")    
     cuatri_to_int()
-    print("Success!")
-    print("Creating requirements as lists...")
+    print("Success!\n")    
     split_req()
-    print("Success!")
+    print("Success!\n")
+    fill_unblocks()
+    print("Success!\n")
+    print("Your data is ready\n")
         
 def dict_to_file():
     prepare_data()
@@ -106,10 +103,21 @@ def dict_to_file():
             row.update(value)
             writer.writerow(row)
 
+def dict_to_class():
+    with open('courses.py', 'w') as file:
+        file.write("from course import Course\n")
+        file.write("course_catalog = {}\n")
+        
+    for item in my_dict:
+        print(item)
+        item_name = item
+        item_name = Course(item, my_dict[item]['Nivel'], my_dict[item]['Curso'], my_dict[item]['Requisitos'], my_dict[item]['Estado'], my_dict[item]['Unlocks'])
+        with open('courses.py', 'a') as f:
+            f.write(f"course_catalog['{item}'] = {item_name}\n")
 
 #lista los requisitos        
 def get_all_reqs():
-    print("\nGetting requirements\n")
+    print("\nGetting all requirements\n")
     for id in my_dict:
         print(f"Para el curso: {id} {my_dict[id]['Curso']} Necesitas: {my_dict[id]['Requisitos']}")
         
@@ -122,9 +130,7 @@ def get_reqs():
             for requirement in my_dict[id]['Requisitos']:
                 #ERROR PORQUE HAY UN REQ QUE DICE [CO] al final
                 #TODO add a try catch exception in case requirement does not exist
-                
-                requirement = requirement[:6]
-                
+               
                 try: 
                     if my_dict[requirement]['Estado'] == 'Aprobado':
                         print(f"Tienes el requisito: {requirement} Aprobado!")
@@ -137,7 +143,9 @@ def get_reqs():
                         print(f"Falta el requisito: {requirement}")
                         
                 except: 
-                    print(f"{requirement} does not exist. Please fix")                    
+                    print(f"{requirement} not found... Fixing...")
+                    requirement = requirement[:6]
+                    print(f"{requirement} se encuentra {my_dict[requirement]['Estado']}")                    
 
     print("\nTus cursos matriculados te desbloquean 1 en las siguientes materias:\n")
     for thing in unblocks:
@@ -183,19 +191,20 @@ def get_enrolled_count():
     for id in my_dict:
         if my_dict[id]['Estado'] == 'Matriculado':
             count +=1
-    print(f"Solo faltan {count} cursos por completar")  
+    print(f"Solo faltan {count} cursos por completar\n")  
     
 def get_pending_count():
     count = 0      
     for id in my_dict:
         if my_dict[id]['Estado'] == 'Por matricular':
             count +=1
-    print(f"Solo faltan {count} cursos por completar")      
+    print(f"Solo faltan {count} cursos por completar\n")      
                    
 def get_all():
-    for item, value in my_dict.items():
+    print(f"\n*PRINTING ALL*\n")
+    for key, value in my_dict.items():
         #print(value['Curso'])
-        print(f"{item}: {value}")
+        print(f"{key}: {value}")
         
 def get_by_level(cuatri):
     print(f"Las materias del cuatri {cuatri} son:")
@@ -260,13 +269,23 @@ def level_menu():
 def main():
     print("Hello from project-one!")
     print("Assignature tracker")
-    prepare_data()
+    prepare_data('plan_estudios.csv')
     print("Opening menu...")
     get_pending()
     get_all()
-    get_all_reqs()
+    #get_all_reqs()
     get_reqs()
     get_all()
+    dict_to_class()
+    print("\n============\nEL CATALOGO\n============\n")
+    for id in course_catalog:
+        print(f"{id}: {course_catalog[id]}")
+    #print(course_catalog)
+    print(course_catalog['II-115'].name)
+    res = cursor.execute("SELECT name FROM users")
+    res.fetchone()
+    print(res.fetchone())
+    conn.close()
     #main_menu()
     #get_by_id(38)
     #get_by_level(8)
