@@ -160,7 +160,7 @@ def get_enrolled():
     count = 0      
     for id in my_dict:
         if my_dict[id]['Estado'] == 'Matriculado':
-            print(my_dict[id])
+            print(f"{id}: {my_dict[id]['Curso']}")
     get_enrolled_count()  
 
 #lista las materias pendientes            
@@ -183,7 +183,7 @@ def get_enrolled_count():
     for id in my_dict:
         if my_dict[id]['Estado'] == 'Matriculado':
             count +=1
-    print(f"Solo faltan {count} cursos por completar")  
+    print(f"\nTienes {count} cursos matriculados\n")  
     
 def get_pending_count():
     count = 0      
@@ -211,7 +211,7 @@ def main_menu():
         print("\n--- APP MAIN MENU ---")
         print("1. Print all")
         print("2. Get by cuatri")
-        print("3. Help")
+        print("3. Get enrolled")
         print("0. Exit")
 
         choice = input("\nSelect an option (1-4): ")       
@@ -219,10 +219,10 @@ def main_menu():
             print("Displaying all assignatures...")
             get_all()
         elif choice == '2':
-            print("Opening settings...")
+            print("Get courses by level")
             level_menu()
         elif choice == '3':
-            print("Loading help documentation...")
+            print("Get courses currently enrolled in")
             get_enrolled()
         elif choice == '0':
             print("Exiting... Goodbye!")
@@ -233,41 +233,48 @@ def main_menu():
 def level_menu():
     while True:
         print("\n--- APP SECONDARY MENU ---")
-        print("1. Print all")
-        print("2. Settings")
-        print("3. Help")
-        print("0. Exit")
+        print("--- TYPE A LEVEL TO GET INFO ---")
+        print("Enter a number to get the courses of that level")
+        print("1. Prints level 1 courses (cuatrimestre I)")
+        print("2. Prints level 2 courses (cuatrimestre II)...")
+        print("0. Back to main menu")
 
-        choice = input("\nSelect an option (1-4): ")       
-        if choice == '1':
-            print("Displaying profile information...")
-            get_by_level(1)
-            break;
-        elif choice == '2':
-            print("Opening settings...")
-            get_by_level(2)
-            break;
-        elif choice == '3':
-            print("Loading help documentation...")
-            get_by_level(3)
-            break;
-        elif choice == '0':
-            print("Exiting... Goodbye!")
-            break  # This stops the while loop
-        else:
-            print("Invalid choice. Please try again.")
+        choice = input("\nSelect an option (0-8): ") 
+        
+        match choice:
+            case '0':
+                print("Exiting... Goodbye!")
+                break
+            case '1':
+                get_by_level(1)                         
+            case '2':
+                get_by_level(2)
+            case '3':
+                get_by_level(3)
+            case '4':
+                get_by_level(4)
+            case '5':
+                get_by_level(5)
+            case '6':
+                get_by_level(6)
+            case '7':
+                get_by_level(7)
+            case '8':
+                get_by_level(8)                                   
+            case _:
+              print("Invalid choice. Please try again.") 
 
 def main():
     print("Hello from project-one!")
     print("Assignature tracker")
     prepare_data()
     print("Opening menu...")
-    get_pending()
-    get_all()
+    get_all()    
     get_all_reqs()
     get_reqs()
-    get_all()
-    #main_menu()
+    get_pending()
+    get_enrolled()
+    main_menu()
     #get_by_id(38)
     #get_by_level(8)
     #dict_to_file()
